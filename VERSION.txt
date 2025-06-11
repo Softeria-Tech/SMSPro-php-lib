@@ -1,0 +1,16 @@
+////////////////////////////////////////////////////////////////////////////////////////////////////
+// +--------------------------------------------------------------------------------------------+ //
+// Smspro/Sms Version 1.0.0
+//
+// Holds a static string representing the current version of Smspro/Sms
+//
+// Copyright (c) Softeria Tech Ltd (http://sms.softeriatech.com)
+// Licensed under The MIT License
+// Redistributions of files must retain the above copyright notice.
+//
+// For more details, visit:
+// Official website: http://sms.softeriatech.com
+// License details: http://www.opensource.org/licenses/mit-license.php
+// +--------------------------------------------------------------------------------------------+ //
+////////////////////////////////////////////////////////////////////////////////////////////////////
+1.0.0
