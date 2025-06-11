@@ -243,7 +243,7 @@ class Utils
             $phoneNumber = $phoneNumber['mobile'];
         }
         if ($sTel = preg_replace('/[^\dxX]/', '', $phoneNumber)) {
-            return '+' . ltrim($sTel, '0');
+            return ltrim($sTel, ' ');
         }
 
         return null;
@@ -251,10 +251,7 @@ class Utils
 
     public static function formatRecipient(mixed $recipient): string
     {
-        return is_array($recipient) ? implode(
-            ',',
-            array_map(Constants::MAP_MOBILE, $recipient)
-        ) : $recipient;
+        return is_array($recipient) ? implode(',',array_map(Constants::MAP_MOBILE, $recipient)) : $recipient;
     }
 
     public static function getRecipientName(mixed $number): ?string

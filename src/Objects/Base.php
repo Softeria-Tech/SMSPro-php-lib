@@ -30,10 +30,10 @@ class Base implements ObjectEntityInterface
         if (!property_exists($class, $property)) {
             throw new SmsproException([$property => 'is not allowed!']);
         }
-        if ($property === 'from') {
+        if ($property === 'sender_name') {
             $value = Utils::clearSender($value);
         }
-        if ($property === 'to') {
+        if ($property === 'mobiles') {
             $value = Utils::makeNumberE164Format($value);
         }
         $class->$property = $value;
@@ -154,7 +154,7 @@ class Base implements ObjectEntityInterface
         $xTel = preg_replace('/[^\dxX]/', '', $phoneNumber);
         $xTel = ltrim($xTel, '0');
 
-        return is_numeric($xTel) && (mb_strlen($xTel) > 10 && mb_strlen($xTel) <= 15);
+        return is_numeric($xTel) && (mb_strlen($xTel) > 8 && mb_strlen($xTel) <= 15);
     }
 
     private function findPhoneNumber(mixed $recipient): string
@@ -177,7 +177,7 @@ class Base implements ObjectEntityInterface
             return;
         }
 
-        foreach ($payload['to'] as $xTo) {
+        foreach ($payload['mobiles'] as $xTo) {
             if ($xTo instanceof RecipientCollection) {
                 $this->validateCameroonPhoneNumber($xTo->toArray(), $entity);
                 continue;

@@ -16,7 +16,7 @@ use Exception;
  *
  * @property string            $id
  * @property int               $status
- * @property string            $to
+ * @property string            $mobiles
  * @property float             $message_price
  * @property string            $message
  * @property DateTimeInterface $created_at
@@ -35,7 +35,7 @@ final class Message extends ObjectResponse
         parent::__construct($response);
         $normalize = new NormalizeMessageResponse($response->getJson());
         $smsResponseData = $normalize->get();
-        $this->data = !empty($smsResponseData) ? $smsResponseData['sms'] : [];
+        $this->data = !empty($smsResponseData) ? $smsResponseData['data'] : [];
     }
 
     public function getId(): ?string
@@ -64,12 +64,12 @@ final class Message extends ObjectResponse
 
     public function getTo(): ?string
     {
-        if (array_key_exists('to', $this->data)) {
-            return $this->data['to'];
+        if (array_key_exists('mobiles', $this->data)) {
+            return $this->data['mobiles'];
         }
 
         return array_key_exists('messages', $this->data) ?
-            implode(',', array_column($this->data['messages'], 'to')) : null;
+            implode(',', array_column($this->data['messages'], 'mobiles')) : null;
     }
 
     public function getMessagePrice(): ?float

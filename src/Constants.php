@@ -17,7 +17,7 @@ use const PHP_VERSION_ID;
 class Constants
 {
     /** Client-specific constants. */
-    public const CLIENT_VERSION = '4.1.0';
+    public const CLIENT_VERSION = '1.0.0';
 
     public const CLIENT_TIMEOUT = 30; // 30 seconds
 
@@ -26,16 +26,18 @@ class Constants
     /** API-related constants. */
     public const END_POINT_URL = 'https://sms.softeriatech.com/api';
 
-    public const END_POINT_VERSION = 'v1';
+    public const END_POINT_VERSION = 'v1/bulksms';
 
     public const JSON_RESPONSE_FORMAT = 'json';
 
     /** Resource-related constants. */
     public const RESOURCE_VIEW = 'view';
 
-    public const RESOURCE_BALANCE = 'balance';
+    public const RESOURCE_BALANCE = 'units';
 
     public const RESOURCE_TOP_UP = 'topup';
+
+    public const RESOURCE_SEND_SMS = 'send';
 
     /** SMS-related constants. */
     public const SMS_MAX_RECIPIENTS = 50;
@@ -49,7 +51,7 @@ class Constants
 
     public const MAP_MOBILE = [Utils::class, 'mapMobile'];
 
-    public const CREDENTIAL_ELEMENTS = ['api_key', 'api_secret'];
+    public const CREDENTIAL_ELEMENTS = ['pro_api_key', 'api_secret'];
 
     /**
      * Returns the PHP version.

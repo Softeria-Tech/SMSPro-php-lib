@@ -8,12 +8,11 @@
     "ext-json": "*",
     "ext-mysqli": "*",
     "ext-curl": "*",
-    "ext-simplexml": "*",
-    "camoo/inflector": "^1.0",
-    "camoo/curl-http-client": "^1.0.3",
     "vlucas/valitron": "^1.4",
     "nicoswd/php-gpg": "^1.7",
-    "giggsey/libphonenumber-for-php": "^8.10"
+    "giggsey/libphonenumber-for-php": "^8.10",
+    "guzzlehttp/guzzle": "*",
+    "icanboogie/inflector": "*"
   },
   "minimum-stability": "dev",
   "homepage": "https://sms.softeriatech.com",

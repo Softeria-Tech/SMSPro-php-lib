@@ -79,7 +79,7 @@ class Runner
 
     private function applyBulk(array $credentials, array $bulkData, CallbackDto $callback): void
     {
-        $credentialObj = new Credential($credentials['api_key'], $credentials['api_secret']);
+        $credentialObj = new Credential($credentials['pro_api_key'], $credentials['api_secret']);
         $command = new BulkMessageCommand($bulkData, $callback);
 
         $handler = $this->bulkMessageCommandHandler ?? new BulkMessageCommandHandler(

@@ -38,10 +38,10 @@ class Balance extends Base
     {
         try {
             $this->setResourceName(Constants::RESOURCE_BALANCE);
-
             return new Response\Balance($this->execRequest(Client::GET_REQUEST, false));
-        } catch (Throwable) {
-            throw new SmsproException('Balance Request can not be performed!');
+        } catch (Throwable $exception) {
+            echo $exception->getTraceAsString();
+            throw new SmsproException($exception->getMessage(), $exception->getCode(), $exception->getPrevious());
         }
     }
 }

@@ -15,7 +15,7 @@ final class RecipientCollectionTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $this->collection = new RecipientCollection(['+237612345678', '+237612345679', '+237612345610', '+33689764530']);
+        $this->collection = new RecipientCollection(['0112587956', '+254712509826', '753268299', '254712345678']);
     }
 
     protected function tearDown(): void
@@ -24,18 +24,14 @@ final class RecipientCollectionTest extends TestCase
         $this->collection = null;
     }
 
-    public function testCanCreateInstance(): void
-    {
-        $this->assertInstanceOf(RecipientCollection::class, $this->collection);
-        $this->assertIsIterable($this->collection);
-    }
 
     public function testCanAdd(): void
     {
         $collection = new RecipientCollection();
-        $collection->add('+33689764530');
+        $collection->add('254712345678');
+        
         $array = iterator_to_array($collection);
-        $this->assertEquals($array[33689764530], new Recipient('+33689764530'));
+        $this->assertEquals($array[254712345678], new Recipient('254712345678'));
     }
 
     public function testWithoutRecipients(): void

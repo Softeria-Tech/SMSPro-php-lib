@@ -146,15 +146,12 @@ class Base implements ObjectHandlerInterface
      **/
     public function getEndPointUrl(): string
     {
-        $sUrlTmp = $this->endpoint . Constants::DS . $this->smsproClassicApiVersion . Constants::DS;
+        $sUrlTmp = $this->endpoint . Constants::DS . $this->smsproClassicApiVersion;
         $sResource = '';
         if ($this->getResourceName() !== null && $this->getResourceName() !== 'sms') {
             $sResource = Constants::DS . $this->getResourceName();
         }
-
-        $responseFormat = $this->responseJson ?? Constants::JSON_RESPONSE_FORMAT;
-
-        return sprintf($sUrlTmp . 'sms' . $sResource . '%s', '.' . $responseFormat);
+        return sprintf($sUrlTmp . $sResource);
     }
 
     /**
@@ -174,11 +171,8 @@ class Base implements ObjectHandlerInterface
             throw new SmsproException(['_error' => $this->getErrors()]);
         }
 
-        $command = new ExecuteRequestCommand(
-            $type,
-            $this->getEndPointUrl(),
-            $data,
-            new Credential($this->getCredentials()['api_key'], $this->getCredentials()['api_secret'])
+        $command = new ExecuteRequestCommand( $type, $this->getEndPointUrl(), $data,
+            new Credential($this->getCredentials()['pro_api_key'], $this->getCredentials()['api_secret'])
         );
         $handler = $this->requestCommandHandler ?? new ExecuteRequestCommandHandler();
 
@@ -195,26 +189,7 @@ class Base implements ObjectHandlerInterface
         $this->responseJson = $format;
     }
 
-    /** @throws Exception */
-    public function execBulk(CallbackDto|array $callBack, ?string $phpBinPath = null): ?int
-    {
-        $oClassObj = $this->getDataObject();
-        if (!$oClassObj->has('to') || empty($oClassObj->to)) {
-            return null;
-        }
-
-        $handler = new AddBulkCommandHandler();
-
-        return $handler->handle(
-            new AddBulkCommand(
-                new Credential($this->getCredentials()['api_key'], $this->getCredentials()['api_secret']),
-                $this->getData(),
-                $callBack,
-                $phpBinPath
-            )
-        );
-    }
-
+   
     protected function getErrors(): array
     {
         return $this->errors;

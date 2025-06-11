@@ -42,6 +42,7 @@ class Message extends Base
     public function send(): MessageResponse
     {
         try {
+            $this->setResourceName(Constants::RESOURCE_SEND_SMS);
             $response = $this->execRequest(Client::POST_REQUEST);
         } catch (RateLimitException $exception) {
             throw $exception;
@@ -77,8 +78,8 @@ class Message extends Base
      *
      * @throws Exception
      */
-    public function sendBulk(CallbackDto|array $callBack = []): ?int
+    public function sendBulk()
     {
-        return $this->execBulk($callBack) ?: null;
+        return $this->send();
     }
 }

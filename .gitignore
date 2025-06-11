@@ -7,3 +7,8 @@ phpunit.xml
 .phpunit.result.cache
 .php-cs-fixer.cache
 .idea
+/tests/_output
+/.vscode
+/.phpunit.result.cache
+/.phpunit
+tmp

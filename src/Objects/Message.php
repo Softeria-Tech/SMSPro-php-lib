@@ -1,6 +1,6 @@
 <?php
 
-declare(strict_types=1);
+declare (strict_types = 1);
 
 namespace Smspro\Sms\Objects;
 
@@ -27,7 +27,7 @@ final class Message extends Base
      * (including country code) or an alphanumeric string. In case
      * of an alphanumeric string, the maximum length is 11 characters.
      */
-    public ?string $from = null;
+    public ?string $sender_name = null;
 
     /** The content of the SMS message. */
     public ?string $message = null;
@@ -36,7 +36,7 @@ final class Message extends Base
      * Recipient that should receive the sms
      * You can set single recipient (string) or multiple recipients by using array
      */
-    public iterable|Recipient|string|null $to = null;
+    public iterable|Recipient|string|null $mobiles = null;
 
     /** The datacoding used, can be text,plain,unicode or auto */
     public ?string $datacoding = null;
@@ -79,8 +79,7 @@ final class Message extends Base
 
     public function validatorDefault(Validator $validator): Validator
     {
-        $validator
-            ->rule('required', ['from', 'message', 'to']);
+        $validator->rule('required', ['sender_name', 'message', 'mobiles']);
         $validator
             ->rule('optional', [
                 'type',
@@ -114,8 +113,8 @@ final class Message extends Base
             ->rule(function (string $field, string $value) {
                 return is_file($value);
             }, 'pgp_public_file')->message('{field} does not exist');
-        $this->isPossibleNumber($validator, 'to');
-        $this->isValidUTF8Encoded($validator, 'from');
+        $this->isPossibleNumber($validator, 'mobiles');
+        $this->isValidUTF8Encoded($validator, 'sender_name');
         $this->isValidUTF8Encoded($validator, 'message');
 
         return $validator;

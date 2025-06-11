@@ -6,14 +6,14 @@ namespace Smspro\Sms\Entity;
 
 final class Credential
 {
-    public function __construct(public readonly string $key, public readonly string $secret)
+    public function __construct(public readonly string $key, public $secret=null)
     {
     }
 
     public function toArray(): array
     {
         return [
-            'api_key' => $this->key ?: '',
+            'pro_api_key' => $this->key ?: '',
             'api_secret' => $this->secret ?: '',
         ];
     }

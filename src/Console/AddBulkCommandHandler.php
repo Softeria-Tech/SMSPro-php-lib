@@ -51,7 +51,7 @@ final class AddBulkCommandHandler
         $serializedData = serialize([
             $command->callback,
             $temporaryFileName,
-            ['api_key' => $command->credentials->key, 'api_secret' => $command->credentials->secret],
+            ['pro_api_key' => $command->credentials->key, 'api_secret' => $command->credentials->secret],
         ]);
 
         $process = $this->backgroundProcess ?? new BackgroundProcess();

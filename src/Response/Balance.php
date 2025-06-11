@@ -20,25 +20,29 @@ final class Balance extends ObjectResponse
     public function __construct(Response $response)
     {
         parent::__construct($response);
-        $this->_data = $this->_data['balance'];
     }
 
     public function getBalance(): float
     {
-        if (array_key_exists('balance', $this->_data)) {
-            return round($this->_data['balance'], 2);
+        if (array_key_exists('credit_balance', $this->_data)) {
+            return (float)str_replace(",","",$this->_data['credit_balance']);
         }
 
         return 0.00;
     }
 
-    public function getCurrency(): ?string
+    public function getRate(): float
     {
-        if (array_key_exists('currency', $this->_data)) {
-            return $this->_data['currency'];
+        if (array_key_exists('rate', $this->_data)) {
+            return (float)$this->_data['rate'];
         }
 
-        return null;
+        return 1.0;
+    }
+
+    public function getCurrency(): ?string
+    {
+        return $this->_data['currency']??"Ksh";;
     }
 
     public function getMoney(): Money

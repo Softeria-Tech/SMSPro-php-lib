@@ -2,6 +2,7 @@
 
 namespace Smspro\Test\TestCase;
 
+use GuzzleHttp\Client;
 use Smspro\Sms\Constants;
 use LogicException;
 use PHPUnit\Framework\TestCase;
@@ -33,5 +34,14 @@ class ConstantsTest extends TestCase
     public function testGetSMSPath(): void
     {
         $this->assertSame(dirname(__DIR__, 2) . DIRECTORY_SEPARATOR, Constants::getSMSPath());
+    }
+
+    public function testApiReachable(): void
+    {
+        $client = new Client();
+        $results=$client->get(Constants::END_POINT_URL."/v1", [
+            'http_errors' => false,
+        ]);
+        $this->assertTrue($results->getStatusCode() < 400, 'API is not reachable. Status code: ' . $results->getStatusCode());
     }
 }

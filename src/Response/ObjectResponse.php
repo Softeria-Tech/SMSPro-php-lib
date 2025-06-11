@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Smspro\Sms\Response;
 
-use Smspro\Inflector\Inflector;
+use ICanBoogie\Inflector;
 use Smspro\Sms\Exception\SmsproException;
 use Smspro\Sms\Http\Response;
 
@@ -13,7 +13,7 @@ class ObjectResponse
     protected array $_data;
 
     public function __construct(Response $response)
-    {
+    {        
         $this->_data = $response->getJson();
     }
 
@@ -34,7 +34,8 @@ class ObjectResponse
      */
     public function __get(string $property): mixed
     {
-        $getter = sprintf('get%s', Inflector::camelize($property));
+        $inflector = Inflector::get(Inflector::DEFAULT_LOCALE);
+        $getter = sprintf('get%s', $inflector->camelize($property));
 
         if (method_exists($this, $getter)) {
             return $this->$getter();

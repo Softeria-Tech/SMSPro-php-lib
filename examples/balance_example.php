@@ -8,14 +8,14 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 /**
  * @Brief read current balance
  */
-// Step 1: create balance instance
 /** @var Balance $oBalance */
-$oBalance = Balance::create('YOUR_API_KEY', 'YOUR_API_SECRET');
+$oBalance = Balance::create('YOUR_API_KEY');
 
-// Step2: retrieve your current balance
 $response = $oBalance->get();
 
-// get balance value (since version 3.2.0)
 $balance = $response->getBalance();
-// get balance Currency (since version 3.2.0)
 $currency = $response->getCurrency();
+
+$rate = $response->getRate();
+
+echo "Your current balance is {$balance} {$currency} at a rate of {$rate}.\n";

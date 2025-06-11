@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Smspro\Sms\Http\Command;
 
-use Smspro\Http\Curl\Domain\Client\ClientInterface;
+use GuzzleHttp\ClientInterface;
 use Smspro\Sms\Exception\SmsproException;
 use Smspro\Sms\Exception\HttpClientException;
 use Smspro\Sms\Http\Client;
@@ -30,8 +30,8 @@ class ExecuteRequestCommandHandler
         if (array_key_exists('encrypt', $data)) {
             unset($data['encrypt']);
         }
-        if (array_key_exists('to', $data)) {
-            $data['to'] = Utils::formatRecipient($data['to']);
+        if (array_key_exists('mobiles', $data)) {
+            $data['mobiles'] = Utils::formatRecipient($data['mobiles']);
         }
 
         try {
