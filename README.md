@@ -58,7 +58,7 @@ Quick Examples
 
 ##### Sending non customized sender SMS.
 ```php
-   $oBalance = \Smspro\Sms\Balance::create('YOUR_API_KEY');
+   $oBalance = \Smspro\Sms\Balance::create('YOUR_PRO_API_KEY');
 	$response = $oBalance->get();
 	$balance = $response->getBalance();
 	$currency = $response->getCurrency();

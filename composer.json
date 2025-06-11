@@ -11,8 +11,8 @@
     "vlucas/valitron": "^1.4",
     "nicoswd/php-gpg": "^1.7",
     "giggsey/libphonenumber-for-php": "^8.10",
-    "guzzlehttp/guzzle": "*",
-    "icanboogie/inflector": "*"
+    "guzzlehttp/guzzle": "^7.5",
+    "icanboogie/inflector": "^3.0"
   },
   "minimum-stability": "dev",
   "homepage": "https://sms.softeriatech.com",
