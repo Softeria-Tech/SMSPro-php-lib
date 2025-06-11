@@ -365,7 +365,7 @@ class BaseTest extends TestCase
     {
         $base = Base::create();
         $this->assertInstanceOf(Base::class, $base->setCredential(new Credential('key', 'pass')));
-        $this->assertEquals('key', $base->getCredentials()['api_key']);
+        $this->assertEquals('key', $base->getCredentials()['pro_api_key']);
         $this->assertEquals('pass', $base->getCredentials()['api_secret']);
     }
 
