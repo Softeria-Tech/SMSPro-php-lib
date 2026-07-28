@@ -1,60 +1,46 @@
 {
-  "name": "smspro/sms",
-  "description": "SMSPRO API Packages",
-  "type": "library",
-  "require": {
-    "php": ">=8.1",
-    "ext-mbstring": "*",
-    "ext-json": "*",
-    "ext-mysqli": "*",
-    "ext-curl": "*",
-    "vlucas/valitron": "^1.4",
-    "nicoswd/php-gpg": "^1.7",
-    "giggsey/libphonenumber-for-php": "^8.10",
-    "guzzlehttp/guzzle": "^7.5",
-    "icanboogie/inflector": "^3.0"
-  },
-  "minimum-stability": "dev",
-  "homepage": "https://sms.softeriatech.com",
-  "license": "MIT",
-  "prefer-stable": true,
-  "require-dev": {
-    "phpunit/phpunit": "^9.6.1"
-  },
-  "authors": [
-    {
-      "name": "SOFTERIA TECH LTD",
-      "email": "support@softeriatech.com"
-    }
-  ],
-  "keywords": [
-    "SMSPRO",
-    "SMS",
-    "BULK SMS",
-    "SMS Gateway",
-    "GPG SMS encrytion",
-    "Plugin smspro sms",
-    "API-SMS"
-  ],
-  "autoload": {
-    "psr-4": {
-      "Smspro\\Sms\\": "src/"
-    }
-  },
-  "autoload-dev": {
-    "psr-4": {
-      "Smspro\\Test\\": "tests"
-    }
-  },
-  "suggest": {
-    "phpunit/phpunit": "Allows automated tests to be run without system-wide install."
-  },
-  "scripts": {
-    "test": "phpunit --colors=always"
-  },
-  "support": {
-    "issues": "https://github.com/softeria-tech/smspro-php-lib/issues",
-    "source": "https://github.com/softeria-tech/smspro-php-lib",
-    "wiki": "https://github.com/softeria-tech/smspro-php-lib/wiki"
-  }
+    "name": "softeriatech/smspro",
+    "description": "SMSPro Bulk SMS platform integration for Laravel with notification support",
+    "keywords": ["sms", "bulk sms", "laravel", "notification", "softeriatech", "smspro"],
+    "homepage": "https://sms.softeriatech.com",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Softeria Tech",
+            "email": "info@softeriatech.com",
+            "homepage": "https://softeriatech.com"
+        }
+    ],
+    "require": {
+        "php": "^7.4|^8.0|^8.1|^8.2",
+        "illuminate/support": "^8.0|^9.0|^10.0|^11.0",
+        "illuminate/notifications": "^8.0|^9.0|^10.0|^11.0",
+        "guzzlehttp/guzzle": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9.0|^10.0",
+        "orchestra/testbench": "^6.0|^7.0|^8.0|^9.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "SofteriaTech\\SmsPro\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "SofteriaTech\\SmsPro\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "SofteriaTech\\SmsPro\\SmsProServiceProvider"
+            ],
+            "aliases": {
+                "SmsPro": "SofteriaTech\\SmsPro\\Facades\\SmsPro"
+            }
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
 }
