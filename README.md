@@ -8,9 +8,9 @@ A Laravel package for SMSPro Bulk SMS platform by Softeria Tech.
 
 ## Installation
 
-`bash
+```bash
 composer require softeriatech/smspro
-`
+```
 
 ## Requirements
 
@@ -22,9 +22,9 @@ composer require softeriatech/smspro
 
 Publish the config file:
 
-`bash
+```bash
 php artisan vendor:publish --provider="SofteriaTech\\SmsPro\\SmsProServiceProvider"
-`
+```
 
 Add to your `.env` file:
 
