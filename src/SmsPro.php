@@ -52,8 +52,8 @@ class SmsPro implements SmsProInterface
     {
         $this->apiKey = $apiKey;
         $this->senderId = $senderId;
-        $this->baseUrl = $baseUrl ?: 'https://sms.softeriatech.com/api/v1/bulksms';
-        $this->timeout = $timeout;
+
+        $this->baseUrl = rtrim($baseUrl ?: 'https://sms.softeriatech.com/api/v1/bulksms', '/') . '/';        $this->timeout = $timeout;
 
         $this->client = new Client([
             'base_uri' => $this->baseUrl,
@@ -84,7 +84,7 @@ class SmsPro implements SmsProInterface
         }
 
         try {
-            $response = $this->client->post('/send', [
+            $response = $this->client->post('send', [
                 'json' => $payload,
             ]);
 
@@ -142,7 +142,7 @@ class SmsPro implements SmsProInterface
     public function getBalance(): array
     {
         try {
-            $response = $this->client->post('/units', [
+            $response = $this->client->post('units', [
                 'form_params' => [
                     'pro_api_key' => $this->apiKey,
                 ],
@@ -176,7 +176,7 @@ class SmsPro implements SmsProInterface
     public function getSenderIds(): array
     {
         try {
-            $response = $this->client->post('/senderids', [
+            $response = $this->client->post('senderids', [
                 'form_params' => [
                     'pro_api_key' => $this->apiKey,
                 ],
@@ -211,7 +211,7 @@ class SmsPro implements SmsProInterface
     public function getGroups(): array
     {
         try {
-            $response = $this->client->post('/grouplist', [
+            $response = $this->client->post('grouplist', [
                 'form_params' => [
                     'pro_api_key' => $this->apiKey,
                 ],
@@ -262,7 +262,7 @@ class SmsPro implements SmsProInterface
     public function updateGroup(string $name, string $contacts): array
     {
         try {
-            $response = $this->client->post('/updatecontacts', [
+            $response = $this->client->post('updatecontacts', [
                 'form_params' => [
                     'pro_api_key' => $this->apiKey,
                     'name' => $name,
@@ -298,7 +298,7 @@ class SmsPro implements SmsProInterface
     public function getSupportedCountries(): array
     {
         try {
-            $response = $this->client->post('/countries', [
+            $response = $this->client->post('countries', [
                 'form_params' => [
                     'pro_api_key' => $this->apiKey,
                 ],
@@ -333,7 +333,7 @@ class SmsPro implements SmsProInterface
     public function verifyMobile(string $mobile, string $code): array
     {
         try {
-            $response = $this->client->post('/mverify', [
+            $response = $this->client->post('mverify', [
                 'form_params' => [
                     'pro_api_key' => $this->apiKey,
                     'mobiles' => $this->formatMobile($mobile),
@@ -366,7 +366,7 @@ class SmsPro implements SmsProInterface
         $senderId = $senderId ?: $this->senderId;
 
         try {
-            $response = $this->client->post('/mverify', [
+            $response = $this->client->post('mverify', [
                 'form_params' => [
                     'pro_api_key' => $this->apiKey,
                     'mobiles' => $this->formatMobile($mobile),
@@ -404,7 +404,7 @@ class SmsPro implements SmsProInterface
     public function validateMobile(string $mobile): array
     {
         try {
-            $response = $this->client->get('/mobile', [
+            $response = $this->client->get('mobile', [
                 'query' => [
                     'mobile' => $mobile,
                 ],
