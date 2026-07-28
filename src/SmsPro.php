@@ -68,7 +68,7 @@ class SmsPro implements SmsProInterface
     /**
      * {@inheritdoc}
      */
-    public function send(string|array $mobiles, string $message, ?string $senderId = null): array
+    public function send($mobiles, string $message, ?string $senderId = null): array
     {
         $mobiles = $this->formatMobiles($mobiles);
         $senderId = $senderId ?: $this->senderId;
